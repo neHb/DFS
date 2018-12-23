@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+using Graph = vector<vector<int>>;
+
+void DFS(Graph const &G, int v, vector<bool> &visited)
+{
+	visited[v] = true;
+	cout << v << " ";
+	for (size_t i = 0; i < G.size(); i++)
+		if ((G[v][i]) && (!visited[i]))
+			DFS(G, i, visited);
+}
+
+int main()
+{
+	int start;
+	cin >> start;
+	Graph G
+	{
+	{0, 1, 0, 0, 1},
+	{1, 0, 1, 1, 0},
+	{0, 1, 0, 0, 1},
+	{0, 1, 0, 0, 1},
+	{1, 0, 1, 1, 0}
+	};
+	vector<bool> visited(G.size(), false);
+	DFS(G, start, visited);
+}
